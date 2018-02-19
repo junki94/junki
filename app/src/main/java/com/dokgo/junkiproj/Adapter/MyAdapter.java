@@ -3,6 +3,7 @@ package com.dokgo.junkiproj.Adapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,12 +55,13 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         switch (type){
             case 0:  final ListHolder listHolder = (ListHolder)holder;
                 final String name =SharedData.get(position).getName();
+                Log.e("이름",name);
                 final String id = SharedData.get(position).getId();
                 listHolder.name.setText(name);
                 listHolder.addr.setText(SharedData.get(position).getAddr());
                 // TODO 홀더에서 이미지뷰 가져온다음 노인 이름에 매치해서 이미지 설정
-//        if(노인이름)
-//        listHolder.img.setImageResource(R.drawable.이미지이름);
+                if(id.equals("1")) listHolder.img.setImageResource(R.drawable.s2);
+                if(id.equals("3")) listHolder.img.setImageResource(R.drawable.s2);
                 listHolder.layout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

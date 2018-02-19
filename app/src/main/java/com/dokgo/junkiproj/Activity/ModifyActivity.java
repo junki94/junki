@@ -34,6 +34,7 @@ public class ModifyActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ModifyActivity.this, DetailActivity.class);
+                //TODO 디비 업데이트 후 아이디값 디테일액티비티로 넘겨주기
                 intent.putExtra("name",name);
                 startActivity(intent);
                 Toast.makeText(getApplicationContext(),"정보 수정 완료",Toast.LENGTH_SHORT).show();

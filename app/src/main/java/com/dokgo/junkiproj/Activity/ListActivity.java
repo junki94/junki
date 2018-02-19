@@ -107,8 +107,9 @@ public class ListActivity extends AppCompatActivity {
                 JSONObject temp = (JSONObject)array.get(i);
 
                 listViewData = new ListData();
-
-                listViewData.setName(temp.get("sename").toString());
+                String tmp =temp.get("sename").toString();
+                Log.e("디비 이름",tmp);
+                listViewData.setName(tmp);
                 listViewData.setAddr(temp.get("seaddress").toString());
                 listViewData.setId(temp.get("senumber").toString());
                 finalData.add(listViewData);

@@ -2,10 +2,12 @@ package com.dokgo.junkiproj.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.dokgo.junkiproj.Adapter.MyAdapter;
 import com.dokgo.junkiproj.Calendar.OneDayDecorator;
@@ -17,6 +19,7 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -52,9 +55,16 @@ public class CalActivity extends AppCompatActivity{
                 new SaturdayDecorator(),
                 oneDayDecorator);
 
-//        String tmp = materialCalendarView.getSelectedDate().getDate().toString();
-//        Toast.makeText(getApplicationContext(),tmp,Toast.LENGTH_SHORT).show();
-        //TODO 달력 눌렀을때 눌른 날짜 토스트 띄우기
+        materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                if(selected){
+                    Log.e("년 : ",Integer.toString(date.getYear()));
+                    Log.e("월 : ",Integer.toString(date.getMonth())+1); // 월은 1 더해야 댐
+                    Log.e("일 : ",Integer.toString(date.getDay()));
+                }
+            }
+        });
     }
     private ArrayList<CalData> getDataFromDB(){
         ArrayList<CalData> finalData = new ArrayList<CalData>();
