@@ -124,7 +124,7 @@ public class ModifyActivity extends AppCompatActivity{
 
 //               URL url = new URL("http://ec2-18-220-255-40.us-east-2.compute.amazonaws.com/zzz.php");
 //                URL url = new URL("http://172.30.1.33:8080/test/put.do");
-                innerDB.insert(nameTitle.getText().toString(),address.getText().toString(),memo.getText().toString());
+                innerDB.insert(id,nameTitle.getText().toString(),address.getText().toString(),memo.getText().toString());
                 URL url = new URL(strings[0]);
                 Log.e("서버 이름",strings[0]);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();

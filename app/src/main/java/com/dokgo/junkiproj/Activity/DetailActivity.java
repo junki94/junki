@@ -53,8 +53,8 @@ public class DetailActivity extends AppCompatActivity {
         img = (ImageView)findViewById(R.id.modifyImg);
         img.setImageResource(R.drawable.t3);
         img1 = (ImageView)findViewById(R.id.toolbar_img);
-        if(id.equals("1")) img1.setImageResource(R.drawable.s2);
-        if(id.equals("2")) img1.setImageResource(R.drawable.s1);
+        if(id.equals("1")) img1.setImageResource(R.drawable.s1);
+        if(id.equals("2")) img1.setImageResource(R.drawable.s2);
         if(id.equals("3")) img1.setImageResource(R.drawable.s3);
         if(id.equals("4")) img1.setImageResource(R.drawable.s4);
 

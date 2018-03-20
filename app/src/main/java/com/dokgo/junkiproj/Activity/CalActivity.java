@@ -29,7 +29,7 @@ import java.util.Date;
 
 public class CalActivity extends AppCompatActivity{
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
+    private MyAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     DayViewDecorator oneDayDecorator;
     MaterialCalendarView materialCalendarView;
@@ -65,25 +65,27 @@ public class CalActivity extends AppCompatActivity{
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 if(selected){
-                    datas = getDataFromInnerDB(date.getDate());
+                    adapter.dataRefresh(getDataFromInnerDB(date.getDate()));
+                    Log.e("datas size",Integer.toString(datas.size()));
                     adapter.notifyDataSetChanged();
-                    recyclerView.invalidate();
                 }
             }
         });
     }
     private ArrayList<CalData> getDataFromInnerDB(Date date){
 
+
+
         ArrayList<ArrayList<String>> innerDBdatas = innerDB.getResult(date);
         int cnt = innerDBdatas.size();
-        Log.e("innerDB size",Integer.toString(cnt));
         ArrayList<CalData> finalData = new ArrayList<CalData>();
         CalData CalViewData;
         for(int i=0;i<cnt;i++){
             CalViewData = new CalData();
-            CalViewData.setName(innerDBdatas.get(i).get(0));
-            CalViewData.setAddr(innerDBdatas.get(i).get(1));
-            CalViewData.setMemo(innerDBdatas.get(i).get(2));
+            CalViewData.setId(innerDBdatas.get(i).get(0));
+            CalViewData.setName(innerDBdatas.get(i).get(1));
+            CalViewData.setAddr(innerDBdatas.get(i).get(2));
+            CalViewData.setMemo(innerDBdatas.get(i).get(3));
             Log.e(innerDBdatas.get(i).get(0)+innerDBdatas.get(i).get(1)+innerDBdatas.get(i).get(2),"날짜: "+innerDBdatas.get(i).get(3));
             finalData.add(CalViewData);
         }

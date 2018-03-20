@@ -123,29 +123,25 @@ public class ListActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-//
-//        listViewData.setName("송준기");
-//        listViewData.setAddr("군대");
-//        finalData.add(listViewData);
-//        listViewData = new ListData();
+
 //        listViewData.setName("김준기");
-//        listViewData.setAddr("송도");
+//        listViewData.setAddr("일산");
+//        listViewData.setId("1");
 //        finalData.add(listViewData);
 //        listViewData = new ListData();
-//        listViewData.setName("조수근");
+//        listViewData.setName("박지웅");
+//        listViewData.setAddr("홍대");
+//        listViewData.setId("2");
+//        finalData.add(listViewData);
+//        listViewData = new ListData();
+//        listViewData.setName("황동균");
 //        listViewData.setAddr("인천");
+//        listViewData.setId("3");
 //        finalData.add(listViewData);
 //        listViewData = new ListData();
-//        listViewData.setName("이수근");
-//        listViewData.setAddr("이천");
-//        finalData.add(listViewData);
-//        listViewData = new ListData();
-//        listViewData.setName("박준기");
-//        listViewData.setAddr("대천");
-//        finalData.add(listViewData);
-//        listViewData = new ListData();
-//        listViewData.setName("호호호");
-//        listViewData.setAddr("없음");
+//        listViewData.setName("권은지");
+//        listViewData.setAddr("인천");
+//        listViewData.setId("4");
 //        finalData.add(listViewData);
 
         return finalData;

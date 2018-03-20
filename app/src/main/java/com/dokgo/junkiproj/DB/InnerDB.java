@@ -27,11 +27,11 @@ public class InnerDB extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {    }
-    public void insert(String name, String address, String memo){
+    public void insert(String id,String name, String address, String memo){
         SQLiteDatabase db = getWritableDatabase();
         Date today = new Date();
         String date = simpleDateFormat.format(today);
-        db.execSQL("INSERT INTO CAL VALUES(null, '" + name + "', '" + address + "', '" + memo + "', '"+ date+"');");
+        db.execSQL("INSERT INTO CAL VALUES('" + id + "','" + name + "', '" + address + "', '" + memo + "', '"+ date+"');");
         Log.e("삽입","INSERT INTO CAL VALUES(null, '" + name + "', '" + address + "', '" + memo + "', '"+ date+"');");
         db.close();
     }
@@ -44,6 +44,7 @@ public class InnerDB extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM CAL WHERE date ="+date, null);
         while (cursor.moveToNext()) {
             tmp = new ArrayList<>();
+            tmp.add(cursor.getString(0)); // id
             tmp.add(cursor.getString(1)); // 이름
             tmp.add(cursor.getString(2)); // 주소
             tmp.add(cursor.getString(3)); // 메모

@@ -60,7 +60,8 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 listHolder.name.setText(name);
                 listHolder.addr.setText(SharedData.get(position).getAddr());
                 // TODO 홀더에서 이미지뷰 가져온다음 노인 이름에 매치해서 이미지 설정
-                if(id.equals("1")) listHolder.img.setImageResource(R.drawable.s2);
+                if(id.equals("1")) listHolder.img.setImageResource(R.drawable.s1);
+                if(id.equals("2")) listHolder.img.setImageResource(R.drawable.s2);
                 if(id.equals("3")) listHolder.img.setImageResource(R.drawable.s3);
                 if(id.equals("4")) listHolder.img.setImageResource(R.drawable.s4);
                 listHolder.layout.setOnClickListener(new View.OnClickListener() {
@@ -77,9 +78,16 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             calHolder.name.setText(SharedData1.get(position).getName());
                 calHolder.addr.setText(SharedData1.get(position).getAddr());
                 calHolder.memo.setText(SharedData1.get(position).getMemo());
-                calHolder.img.setImageResource(R.drawable.s2);
+                String calid = SharedData1.get(position).getId();
+                if(calid.equals("1")) calHolder.img.setImageResource(R.drawable.s1);
+                if(calid.equals("2")) calHolder.img.setImageResource(R.drawable.s2);
+                if(calid.equals("3")) calHolder.img.setImageResource(R.drawable.s3);
+                if(calid.equals("4")) calHolder.img.setImageResource(R.drawable.s4);
                 break;
         }
+    }
+    public void dataRefresh(ArrayList<CalData> arr){
+        SharedData1 = arr;
     }
 
     @Override
