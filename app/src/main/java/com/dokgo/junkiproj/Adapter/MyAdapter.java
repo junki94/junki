@@ -77,6 +77,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             calHolder.name.setText(SharedData1.get(position).getName());
                 calHolder.addr.setText(SharedData1.get(position).getAddr());
                 calHolder.memo.setText(SharedData1.get(position).getMemo());
+                calHolder.img.setImageResource(R.drawable.s2);
                 break;
         }
     }

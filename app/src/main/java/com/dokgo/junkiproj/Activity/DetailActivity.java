@@ -45,6 +45,7 @@ public class DetailActivity extends AppCompatActivity {
         option = (TextView) findViewById(R.id.option);
         memo = (TextView) findViewById(R.id.memo);
         it = getIntent();
+        String serverFlag = it.getStringExtra("serverFlag");
         id = it.getStringExtra("id");
 
         nameTitle = findViewById(R.id.toolbar_title2);
@@ -72,9 +73,17 @@ public class DetailActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-        Task task = new Task();
-        task.execute("http://ec2-18-220-255-40.us-east-2.compute.amazonaws.com/senior.php");
+        if(serverFlag == null) {
+            Task task = new Task();
+            task.execute("http://ec2-18-220-255-40.us-east-2.compute.amazonaws.com/senior.php");
+        }else{
+            nameTitle.setText(it.getStringExtra("name"));
+            birth.setText(it.getStringExtra("birth"));
+            phone.setText(it.getStringExtra("phone"));
+            address.setText(it.getStringExtra("address"));
+            option.setText(it.getStringExtra("option"));
+            memo.setText(it.getStringExtra("memo"));
+        }
     }
 
 

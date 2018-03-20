@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dokgo.junkiproj.DB.InnerDB;
 import com.dokgo.junkiproj.R;
 
 import org.json.JSONException;
@@ -32,20 +33,20 @@ public class ModifyActivity extends AppCompatActivity{
     private TextView nameTitle;
     private EditText birth,phone,address,option,memo;
     private String id;
-
+    private InnerDB innerDB =null ;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify);
-
+        innerDB = new InnerDB(getApplicationContext(),"jkDB",null,1);
         it = getIntent();
-        final String name = it.getStringExtra("name");
-        final String m_birth = it.getStringExtra("birth");
-        final String m_phone = it.getStringExtra("phone");
-        final String m_address = it.getStringExtra("address");
-        final String m_option = it.getStringExtra("option");
-        final String m_memo = it.getStringExtra("memo");
+        final String name = it.getStringExtra("name"); // 원래 이름
+        final String m_birth = it.getStringExtra("birth"); // 원래 생년월일
+        final String m_phone = it.getStringExtra("phone"); // 원래 연락처
+        final String m_address = it.getStringExtra("address"); // 원래 주소
+        final String m_option = it.getStringExtra("option"); // 원래 특이사항
+        final String m_memo = it.getStringExtra("memo"); // 원래 메모
 
         nameTitle = findViewById(R.id.toolbar_title2);
         birth = findViewById(R.id.modify_birth);
@@ -70,9 +71,17 @@ public class ModifyActivity extends AppCompatActivity{
                 Intent intent = new Intent(ModifyActivity.this, DetailActivity.class);
                 //TODO 디비 업데이트 후 아이디값 디테일액티비티로 넘겨주기
                 intent.putExtra("id",id);
+                intent.putExtra("serverFlag","nope");
+                //  private EditText birth,phone,address,option,memo;
+                intent.putExtra("name",nameTitle.getText().toString());
+                intent.putExtra("birth",birth.getText().toString());
+                intent.putExtra("phone",phone.getText().toString());
+                intent.putExtra("address",address.getText().toString());
+                intent.putExtra("option",option.getText().toString());
+                intent.putExtra("memo",memo.getText().toString());
                 Task task = new Task();
-//                task.execute("http://ec2-18-220-255-40.us-east-2.compute.amazonaws.com/zzz.php");
-                task.execute("http://172.30.1.33:8080/test/put.do");
+                task.execute("http://ec2-18-220-255-40.us-east-2.compute.amazonaws.com/zzz.php");
+               // task.execute("http://172.30.1.33:8080/test/put.do");
 
                 startActivity(intent);
                 Toast.makeText(getApplicationContext(),"정보 수정 완료",Toast.LENGTH_SHORT).show();
@@ -113,8 +122,11 @@ public class ModifyActivity extends AppCompatActivity{
             //보내기
             try {
 
-//                URL url = new URL("http://ec2-18-220-255-40.us-east-2.compute.amazonaws.com/zzz.php");
-                URL url = new URL("http://172.30.1.33:8080/test/put.do");
+//               URL url = new URL("http://ec2-18-220-255-40.us-east-2.compute.amazonaws.com/zzz.php");
+//                URL url = new URL("http://172.30.1.33:8080/test/put.do");
+                innerDB.insert(nameTitle.getText().toString(),address.getText().toString(),memo.getText().toString());
+                URL url = new URL(strings[0]);
+                Log.e("서버 이름",strings[0]);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
 
@@ -173,8 +185,15 @@ public class ModifyActivity extends AppCompatActivity{
             @Override
     public void onBackPressed() {
         Intent intent = new Intent(ModifyActivity.this,DetailActivity.class);
-        it = getIntent();
-        intent.putExtra("id",id);
+                intent.putExtra("id",id);
+                intent.putExtra("serverFlag","nope");
+                //  private EditText birth,phone,address,option,memo;
+                intent.putExtra("name",nameTitle.getText().toString());
+                intent.putExtra("birth",birth.getText().toString());
+                intent.putExtra("phone",phone.getText().toString());
+                intent.putExtra("address",address.getText().toString());
+                intent.putExtra("option",option.getText().toString());
+                intent.putExtra("memo",memo.getText().toString());
         startActivity(intent);
         finish();
     }

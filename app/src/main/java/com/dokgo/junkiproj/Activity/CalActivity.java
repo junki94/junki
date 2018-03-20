@@ -13,6 +13,7 @@ import com.dokgo.junkiproj.Adapter.MyAdapter;
 import com.dokgo.junkiproj.Calendar.OneDayDecorator;
 import com.dokgo.junkiproj.Calendar.SaturdayDecorator;
 import com.dokgo.junkiproj.Calendar.SundayDecorator;
+import com.dokgo.junkiproj.DB.InnerDB;
 import com.dokgo.junkiproj.Data.CalData;
 import com.dokgo.junkiproj.R;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
@@ -23,6 +24,7 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 
 public class CalActivity extends AppCompatActivity{
@@ -31,12 +33,16 @@ public class CalActivity extends AppCompatActivity{
     private RecyclerView.LayoutManager layoutManager;
     DayViewDecorator oneDayDecorator;
     MaterialCalendarView materialCalendarView;
+    private ArrayList<CalData> datas;
+    private InnerDB innerDB;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cal);
+        innerDB = new InnerDB(getApplicationContext(),"jkDB",null,1);
         recyclerView = (RecyclerView)findViewById(R.id.cal_recycle);
-        adapter = new MyAdapter(getDataFromDB(),1);
+        datas = getDataFromInnerDB(new Date());
+        adapter = new MyAdapter(datas,1);
         layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -59,45 +65,28 @@ public class CalActivity extends AppCompatActivity{
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 if(selected){
-                    Log.e("년 : ",Integer.toString(date.getYear()));
-                    Log.e("월 : ",Integer.toString(date.getMonth()+1)); // 월은 1 더해야 댐
-                    Log.e("일 : ",Integer.toString(date.getDay()));
+                    datas = getDataFromInnerDB(date.getDate());
+                    adapter.notifyDataSetChanged();
+                    recyclerView.invalidate();
                 }
             }
         });
     }
-    private ArrayList<CalData> getDataFromDB(){
+    private ArrayList<CalData> getDataFromInnerDB(Date date){
+
+        ArrayList<ArrayList<String>> innerDBdatas = innerDB.getResult(date);
+        int cnt = innerDBdatas.size();
+        Log.e("innerDB size",Integer.toString(cnt));
         ArrayList<CalData> finalData = new ArrayList<CalData>();
-        CalData CalViewData = new CalData();
-        CalViewData.setName("송준기");
-        CalViewData.setAddr("군대");
-        CalViewData.setMemo("특이사항 없음");
-        finalData.add(CalViewData);
-        CalViewData = new CalData();
-        CalViewData.setName("김준기");
-        CalViewData.setAddr("송도");
-        CalViewData.setMemo("게임 중독 증상 있음");
-        finalData.add(CalViewData);
-        CalViewData = new CalData();
-        CalViewData.setName("조수근");
-        CalViewData.setAddr("인천");
-        CalViewData.setMemo("알코올 중독 증상 심각");
-        finalData.add(CalViewData);
-        CalViewData = new CalData();
-        CalViewData.setName("이수근");
-        CalViewData.setAddr("이천");
-        CalViewData.setMemo("감기 기운 있음..");
-        finalData.add(CalViewData);
-        CalViewData = new CalData();
-        CalViewData.setName("박준기");
-        CalViewData.setAddr("대천");
-        CalViewData.setMemo("항상 배고파함..");
-        finalData.add(CalViewData);
-        CalViewData = new CalData();
-        CalViewData.setName("호호호");
-        CalViewData.setAddr("없음");
-        CalViewData.setMemo("관리 필요");
-        finalData.add(CalViewData);
+        CalData CalViewData;
+        for(int i=0;i<cnt;i++){
+            CalViewData = new CalData();
+            CalViewData.setName(innerDBdatas.get(i).get(0));
+            CalViewData.setAddr(innerDBdatas.get(i).get(1));
+            CalViewData.setMemo(innerDBdatas.get(i).get(2));
+            Log.e(innerDBdatas.get(i).get(0)+innerDBdatas.get(i).get(1)+innerDBdatas.get(i).get(2),"날짜: "+innerDBdatas.get(i).get(3));
+            finalData.add(CalViewData);
+        }
 
         return finalData;
     }
