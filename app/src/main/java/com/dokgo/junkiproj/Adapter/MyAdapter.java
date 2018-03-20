@@ -61,7 +61,8 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 listHolder.addr.setText(SharedData.get(position).getAddr());
                 // TODO 홀더에서 이미지뷰 가져온다음 노인 이름에 매치해서 이미지 설정
                 if(id.equals("1")) listHolder.img.setImageResource(R.drawable.s2);
-                if(id.equals("3")) listHolder.img.setImageResource(R.drawable.s2);
+                if(id.equals("3")) listHolder.img.setImageResource(R.drawable.s3);
+                if(id.equals("4")) listHolder.img.setImageResource(R.drawable.s4);
                 listHolder.layout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

@@ -46,7 +46,7 @@ public class CalActivity extends AppCompatActivity{
         materialCalendarView.state().edit()
                 .setFirstDayOfWeek(Calendar.SUNDAY)
                 .setMinimumDate(CalendarDay.from(2017,0,1))
-                .setMaximumDate(CalendarDay.from(2030,11,30))
+                .setMaximumDate(CalendarDay.from(2030,11,31))
                 .setCalendarDisplayMode(CalendarMode.MONTHS)
                 .commit();
 
@@ -60,7 +60,7 @@ public class CalActivity extends AppCompatActivity{
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 if(selected){
                     Log.e("년 : ",Integer.toString(date.getYear()));
-                    Log.e("월 : ",Integer.toString(date.getMonth())+1); // 월은 1 더해야 댐
+                    Log.e("월 : ",Integer.toString(date.getMonth()+1)); // 월은 1 더해야 댐
                     Log.e("일 : ",Integer.toString(date.getDay()));
                 }
             }

@@ -5,9 +5,13 @@
     android:background="#372A2A"
     android:orientation="horizontal">
    <TextView
-       android:layout_width="match_parent"
+       android:layout_width="wrap_content"
        android:layout_height="match_parent"
        android:text="여기 새로고침이랑 시간설정 구간 들어감"
-       android:textColor="#FFF4EB"
-       android:gravity="center"/>
+       android:textColor="#FFF4EB"/>
+   <ImageView
+       android:layout_width="wrap_content"
+       android:layout_height="match_parent"
+       android:src="@drawable/t2"
+       android:layout_marginStart="90dp"/>
 </LinearLayout>

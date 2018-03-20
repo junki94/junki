@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,32 +30,43 @@ import java.net.URL;
 
 public class DetailActivity extends AppCompatActivity {
 
-    private ImageView img;
+    private ImageView img,img1;
     private Intent it;
     private TextView nameTitle;
     private String id;
-    private EditText e1,e2,e3,e4,e5;
+    private TextView birth,phone,address,option,memo;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        e1 = (EditText)findViewById(R.id.birth);
-        e2 = (EditText)findViewById(R.id.phone);
-        e3 = (EditText)findViewById(R.id.address);
-        e4 = (EditText)findViewById(R.id.option);
-        e5 = (EditText)findViewById(R.id.memo);
+        birth = (TextView) findViewById(R.id.birth);
+        phone = (TextView) findViewById(R.id.phone);
+        address = (TextView) findViewById(R.id.address);
+        option = (TextView) findViewById(R.id.option);
+        memo = (TextView) findViewById(R.id.memo);
         it = getIntent();
         id = it.getStringExtra("id");
 
         nameTitle = findViewById(R.id.toolbar_title2);
 
         img = (ImageView)findViewById(R.id.modifyImg);
+        img.setImageResource(R.drawable.t3);
+        img1 = (ImageView)findViewById(R.id.toolbar_img);
+        if(id.equals("1")) img1.setImageResource(R.drawable.s2);
+        if(id.equals("2")) img1.setImageResource(R.drawable.s1);
+        if(id.equals("3")) img1.setImageResource(R.drawable.s3);
+        if(id.equals("4")) img1.setImageResource(R.drawable.s4);
 
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DetailActivity.this, ModifyActivity.class);
-                intent.putExtra("name",id);
+                intent.putExtra("id",id);
+                intent.putExtra("name",nameTitle.getText().toString());
+                intent.putExtra("birth",birth.getText().toString());
+                intent.putExtra("phone",phone.getText().toString());
+                intent.putExtra("address",address.getText().toString());
+                intent.putExtra("option",option.getText().toString());
                 startActivity(intent);
                 Toast.makeText(getApplicationContext(),"수정하기",Toast.LENGTH_SHORT).show();
                 finish();
@@ -134,10 +144,10 @@ public class DetailActivity extends AppCompatActivity {
                 if(temp.get("senumber").toString().equals(id)){
 
                     nameTitle.setText(temp.get("sename").toString());
-                    e1.setText(temp.get("senumber").toString());
-                    e2.setText(temp.get("sephonenum").toString());
-                    e3.setText(temp.get("seaddress").toString());
-                    e4.setText(temp.get("seOption").toString());
+                    birth.setText(temp.get("birth").toString());
+                    phone.setText(temp.get("sephonenum").toString());
+                    address.setText(temp.get("seaddress").toString());
+                    option.setText(temp.get("seOption").toString());
                     //e5.setText(temp.get("senumber").toString());
 
                     break;

@@ -13,18 +13,20 @@
         android:layout_marginTop="20dp">
         <TextView
             android:text="생년월일"
+            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textSize="17dp"
             android:layout_weight="0.4"/>
 
-        <EditText
+        <TextView
             android:id="@+id/birth"
+            android:layout_marginTop="20dp"
+            android:textSize="17dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="65dp"
-            android:layout_weight="1"
-            android:cursorVisible="false" />
+            android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -33,17 +35,19 @@
         android:layout_marginTop="20dp">
         <TextView
             android:text="연락처"
+            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textSize="17dp"
             android:layout_weight="0.4"/>
-        <EditText
+        <TextView
             android:id="@+id/phone"
-            android:layout_marginEnd="65dp"
+            android:layout_marginTop="20dp"
+            android:textSize="17dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:cursorVisible="false"/>
+            android:layout_weight="1" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -52,17 +56,19 @@
         android:layout_marginTop="20dp">
         <TextView
             android:text="주소"
+            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textSize="17dp"
             android:layout_weight="0.4"/>
-        <EditText
+        <TextView
             android:id="@+id/address"
-            android:layout_marginEnd="55dp"
+            android:layout_marginTop="20dp"
+            android:textSize="17dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:cursorVisible="false"/>
+            android:layout_weight="1" />
 </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -71,18 +77,20 @@
         android:layout_marginTop="20dp">
         <TextView
             android:text="특이사항"
+            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textSize="17dp"
             android:layout_weight="0.4"/>
 
-        <EditText
+        <TextView
             android:id="@+id/option"
+            android:layout_marginTop="20dp"
+            android:textSize="17dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="65dp"
-            android:layout_weight="1"
-            android:cursorVisible="false" />
+            android:layout_weight="1" />
     </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -95,15 +103,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
                 android:gravity="center"
+                android:textSize="17dp"
+                android:layout_marginTop="20dp"
                 android:text="메모" />
 
-            <EditText
+            <TextView
                 android:id="@+id/memo"
+                android:layout_marginTop="20dp"
+                android:textSize="17dp"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="55dp"
-                android:layout_weight="1"
-                android:cursorVisible="false"
-                android:visibility="invisible" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
     </LinearLayout>
 </LinearLayout>

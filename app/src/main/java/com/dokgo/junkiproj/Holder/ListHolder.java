@@ -15,6 +15,7 @@ import com.dokgo.junkiproj.R;
 public class ListHolder extends RecyclerView.ViewHolder {
     public TextView name, addr, id;
     public ImageView img;
+
     public LinearLayout layout;
     public View parent;
     public ListHolder(View itemView) {

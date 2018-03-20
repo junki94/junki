@@ -18,6 +18,7 @@
             android:gravity="center"
             android:layout_weight="0.4"/>
         <EditText
+            android:id="@+id/modify_birth"
             android:layout_marginEnd="65dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,6 +36,7 @@
             android:gravity="center"
             android:layout_weight="0.4"/>
         <EditText
+            android:id="@+id/modify_phone"
             android:layout_marginEnd="65dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,6 +54,7 @@
             android:gravity="center"
             android:layout_weight="0.4"/>
         <EditText
+            android:id="@+id/modify_address"
             android:layout_marginEnd="55dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -69,6 +72,7 @@
             android:gravity="center"
             android:layout_weight="0.4"/>
         <EditText
+            android:id="@+id/modify_option"
             android:layout_marginEnd="65dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -86,6 +90,7 @@
             android:gravity="center"
             android:layout_weight="0.4"/>
         <EditText
+            android:id="@+id/modify_memo"
             android:layout_marginEnd="55dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

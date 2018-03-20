@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.dokgo.junkiproj.Adapter.MyAdapter;
 import com.dokgo.junkiproj.Data.ListData;
@@ -33,12 +34,15 @@ public class ListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+    private ImageView img;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         recyclerView = (RecyclerView)findViewById(R.id.list_recycle);
+        img = (ImageView)findViewById(R.id.toolbar_icon);
+        img.setImageResource(R.drawable.t5);
 //        adapter = new MyAdapter(getDataFromDB());
 //        layoutManager = new LinearLayoutManager(getApplicationContext());
 //        recyclerView.setLayoutManager(layoutManager);
